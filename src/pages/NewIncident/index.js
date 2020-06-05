@@ -14,19 +14,20 @@ export default function NewIncident() {
   const [description, setDiscription] = useState('');
   const [value, setValue] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const data = { title, description, value };
     api
       .post('incidents', data, {
         headers: {
-          authorization: ongId
-        }
+          authorization: ongId,
+        },
       })
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
-        history.push('/profile');
+        history.go('/profile');
       });
+    alert('cadastrado com sucesso');
   };
 
   return (
@@ -47,19 +48,19 @@ export default function NewIncident() {
         <form onSubmit={handleSubmit}>
           <input
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder='Título do caso'
           />
           <textarea
             value={description}
-            onChange={e => setDiscription(e.target.value)}
+            onChange={(e) => setDiscription(e.target.value)}
             placeholder='Descrição'
           />
 
           <input
             value={value}
             type='number'
-            onChange={e => setValue(e.target.value)}
+            onChange={(e) => setValue(e.target.value)}
             placeholder='Valor em reais'
           />
 
